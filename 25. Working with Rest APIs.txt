@@ -1,0 +1,26 @@
+370. Module Introduction
+    - Planning a Rest API
+    - CRUD Opetations & End points
+    - Validation
+    - Image Upload
+    - Authentication
+
+371. REST APIs & The Rest Of The Course
+    ? How do we adjust our knowlegde working with a Rest API instead of a view based application?
+
+    Let's Organize all main topics we learnt (in the left as we learnt, in the right differences for Rest APIs):
+
+        - NODE + Express App Setup      |       No Changes
+        - Routing / Endpoints      |       Just more http methods
+        - Handling Req & Res      |       Parse + Send JSON files (instead of views)
+        - Request Validation      |       No Changes
+        - DataBase Communication      |       No Changes
+        - Files Uploads & Downloads      |       No real changes (Only in the client side)
+        - Sessions & Cookies      |       There is no more
+        - Authentication      |       A Different Authentication Approach
+
+    - No real changes, just more http methods
+
+    - Work with JSON data instead of Views
+
+372. Understanding the Frontend Setup
