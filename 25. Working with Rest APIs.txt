@@ -23,4 +23,5 @@
 
     - Work with JSON data instead of Views
 
-372. Understanding the Frontend Setup
+373. Planning the API
+    -* We will work with this React App folder, 
