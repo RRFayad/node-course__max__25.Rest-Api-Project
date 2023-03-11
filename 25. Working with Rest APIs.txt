@@ -28,3 +28,6 @@
 
 374. Fetching Lists of Posts
     * We just set the URL in the frontend, and set some parameters in the backend controller
+
+375. Adding a Create Post Endpoint
+    * We set some parameters to the end point, in the server and in the front end code
