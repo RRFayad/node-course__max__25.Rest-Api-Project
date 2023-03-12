@@ -31,3 +31,6 @@
 
 375. Adding a Create Post Endpoint
     * We set some parameters to the end point, in the server and in the front end code
+
+376. Adding Server Side Validation
+    - install
