@@ -33,4 +33,8 @@
     * We set some parameters to the end point, in the server and in the front end code
 
 376. Adding Server Side Validation
-    - install
+    - install express-validator
+        * added the validators in the feed routes
+    
+    ! * to check the error from the server-side, we shuld go to:
+        Dev tools -> network -> look for the post data error (in red) -> Look the data (Preview, Headers adn Repsonse mainly)

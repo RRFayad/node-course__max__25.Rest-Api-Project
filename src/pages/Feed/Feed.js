@@ -114,11 +114,11 @@ class Feed extends Component {
 
     fetch(url, {
       method,
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         title: postData.title,
-        headers: {
-          "Content-Type": "application/json",
-        },
         content: postData.content,
       }),
     })

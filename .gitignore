@@ -2,8 +2,8 @@
 
 # dependencies
 /node_modules
-/node_modules*
-/FronEnd/node_modules
+/api/node_modules
+
 
 # testing
 /coverage
