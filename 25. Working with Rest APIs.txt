@@ -38,3 +38,16 @@
     
     ! * to check the error from the server-side, we shuld go to:
         Dev tools -> network -> look for the post data error (in red) -> Look the data (Preview, Headers adn Repsonse mainly)
+
+377. Setting Up a Post Model
+    * Let's add ome database logic
+
+    Steps:
+        1- npm isntall mongoose
+        2- In the app.js, require mongoose
+        3- Set the env keys with passwords
+        4- mongoose.connect('url').then(app.listen(8080))
+        5- Create models folder;
+        6- Create our model Schema - mongoose.Schema()
+
+        * Mongoose have some options to the schema set up, now we are using timestamps, to save the time for creation and editing of data

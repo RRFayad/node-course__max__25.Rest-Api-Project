@@ -19,7 +19,6 @@ exports.getPosts = (req, res, next) => {
 
 exports.postCreatePost = (req, res, next) => {
   const errors = validationResult(req);
-  console.log(req.body);
 
   if (!errors.isEmpty()) {
     return res

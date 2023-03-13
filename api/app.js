@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+require("dotenv").config();
 
 const feedRoutes = require("./routes/feed");
 
@@ -21,4 +23,12 @@ app.use((req, res, next) => {
 
 app.use("/feed", feedRoutes);
 
-app.listen(8080);
+mongoose
+  .set("strictQuery", true)
+  .connect(
+    `mongodb+srv://test-user__node-course:${process.env.MONGODB_PASSWORD}@cluster0.comn0rn.mongodb.net/REST__API--messages`
+  )
+  .then((result) => {
+    app.listen(8080);
+  })
+  .catch((err) => console.log(err));
