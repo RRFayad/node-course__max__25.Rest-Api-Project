@@ -1,5 +1,7 @@
 const { validationResult } = require("express-validator");
 
+const Post = require("../models/post");
+
 exports.getPosts = (req, res, next) => {
   res.status(200).json({
     posts: [
@@ -28,17 +30,21 @@ exports.postCreatePost = (req, res, next) => {
 
   const title = req.body.title;
   const content = req.body.content;
-  // Create post in db
-
-  res.status(201).json({
-    // 201 means success a resource was created (a bit more specific than just 200)
-    message: "Post created successfully!",
-    post: {
-      _id: new Date().toISOString(),
-      title,
-      content,
-      creator: { name: "Renan" },
-      createdAt: new Date(),
-    },
+  const post = new Post({
+    title,
+    content,
+    imageUrl: "images/budapest.jpg",
+    creator: { name: "Renan" },
   });
+  post
+    .save()
+    .then((result) => {
+      // Just to remember, the mongoose promise (cursor actually) returns the saved object
+      res.status(201).json({
+        // 201 means success a resource was created (a bit more specific than just 200)
+        message: "Post created successfully!",
+        post: result,
+      });
+    })
+    .catch((err) => console.log(err));
 };
