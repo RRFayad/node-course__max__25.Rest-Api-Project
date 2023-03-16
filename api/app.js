@@ -1,3 +1,5 @@
+const path = require("path");
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -9,6 +11,7 @@ const app = express();
 
 // app.use(bodyParser.urlencoded());    // This is what we used before, to get data from forms (x-www-form-urlencoded)
 app.use(bodyParser.json()); // applicatoin/json
+app.use("/images", express.static(path.join(__dirname, "images"))); // This is only for serving our images to the front end
 
 app.use((req, res, next) => {
   // Before we send to our routes, we want to set headers to our response (to prevent CORS errors)
@@ -22,6 +25,13 @@ app.use((req, res, next) => {
 });
 
 app.use("/feed", feedRoutes);
+
+app.use((error, req, res, next) => {
+  console.log(error);
+  const status = error.statusCode || 500;
+  const message = error.message; // this property exists by default
+  res.status(status).json({ message });
+});
 
 mongoose
   .set("strictQuery", true)

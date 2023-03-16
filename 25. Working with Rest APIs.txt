@@ -55,3 +55,14 @@
 378. Storing Posts in the Database
     * We worked in the feed controller
         - Summing up, it's about saving in the DB, and returning the promisse value (which contains the saved object)
+
+379. Static Images & Error Handling
+
+    - We created a middleware (in app.js), only to serve our images (those that we already have it)
+        app.use("/images", express.static(path.join(__dirname, "images")))
+    
+    - Error handling:
+        1. Create the logic for moving with errors for the next middleware in the controllers
+            * IN sync codes, we throw the error
+            * In async code, we must call next(err)
+        2. Register the errorHandling middleware (in app.js)

@@ -23,9 +23,9 @@ exports.postCreatePost = (req, res, next) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    return res
-      .status(422)
-      .json({ message: "Validation Failed", errors: errors.array() });
+    const error = new Error("Validation failed");
+    error.statusCode = 422;
+    throw error;
   }
 
   const title = req.body.title;
@@ -46,5 +46,10 @@ exports.postCreatePost = (req, res, next) => {
         post: result,
       });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err); // As we are inside a async code snippet, throwing the error will not work, we must call next() to reach the next middleware for error handling
+    });
 };
