@@ -66,3 +66,20 @@
             * IN sync codes, we throw the error
             * In async code, we must call next(err)
         2. Register the errorHandling middleware (in app.js)
+
+380. Fetching a Single Post
+    * We created a new route and a new controller
+
+    - In the router, set a get route, setting dinamic id for the post;
+
+    - In the controller, the 'regular' logic:
+        - Get the post id via req.params (we set it in the route)
+        - Look for the post in the db
+            - if error, throw error
+            - If ok, status(200) and return a JSON
+        - And a catch logic, for sending the error to the express error handler
+
+    - In the end, reviewed the front end to get the json data from the rght URL
+
+
+

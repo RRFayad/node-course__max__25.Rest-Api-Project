@@ -3,20 +3,19 @@ const { validationResult } = require("express-validator");
 const Post = require("../models/post");
 
 exports.getPosts = (req, res, next) => {
-  res.status(200).json({
-    posts: [
-      {
-        _id: "0001",
-        title: "First Post",
-        content: "This is the first post!",
-        imageUrl: "images/budapest.jpg",
-        creator: {
-          name: "Renan",
-        },
-        createdAt: new Date(),
-      },
-    ],
-  });
+  Post.find()
+    .then((posts) => {
+      res.status(200).json({
+        message: "Fetched posts successfully",
+        posts,
+      });
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
+    });
 };
 
 exports.postCreatePost = (req, res, next) => {
@@ -51,5 +50,24 @@ exports.postCreatePost = (req, res, next) => {
         err.statusCode = 500;
       }
       next(err); // As we are inside a async code snippet, throwing the error will not work, we must call next() to reach the next middleware for error handling
+    });
+};
+
+exports.getPost = (req, res, next) => {
+  const postId = req.params.postId;
+  Post.findById(postId)
+    .then((post) => {
+      if (!post) {
+        const error = new Error("Could not find post");
+        error.statusCode = 404;
+        throw error; // Here we throw the error, as it will be passed to the next catch block
+      }
+      res.status(200).json({ message: "Post Fetched", post });
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
     });
 };
