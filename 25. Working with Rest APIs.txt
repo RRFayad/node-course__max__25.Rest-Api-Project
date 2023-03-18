@@ -171,7 +171,19 @@ For this, install the uuid package by running:
                     method,
                     body: formData,
                 })
+
+383. Updating Posts
+    - Right now, the CRUD operations are missing
+        * We are gonna work in editing and deleting posts, before the authentication part
+
+    - Working on Edit post:
+        - router.put('post/:postId', controller)
+        - On the controller, we created the logic to check errors, and update the post details
     
+    * On the front end we have to adjust also
+
+
+SOME TROBLUE ON MY IMAGE UPLOAD WHEN i EDIT!
 
 
 
