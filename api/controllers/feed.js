@@ -27,12 +27,20 @@ exports.postCreatePost = (req, res, next) => {
     throw error;
   }
 
+  if (!req.file) {
+    const error = new Error("No Image Provided!");
+    error.statusCode = 422;
+    throw error;
+  }
+
+  const imageUrl = req.file.path.replace("\\", "/"); // Multer generates the path (as it was stored in the server - from my destination field when setting multer fileStorage)
+  console.log(req.file);
   const title = req.body.title;
   const content = req.body.content;
   const post = new Post({
     title,
     content,
-    imageUrl: "images/budapest.jpg",
+    imageUrl,
     creator: { name: "Renan" },
   });
   post

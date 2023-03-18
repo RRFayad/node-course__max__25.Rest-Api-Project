@@ -3,14 +3,38 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const multer = require("multer");
+const { v4: uuidv4 } = require("uuid");
 require("dotenv").config();
 
 const feedRoutes = require("./routes/feed");
 
 const app = express();
 
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "images"); // pointing at the images folder
+  },
+  filename: (req, file, cb) => {
+    cb(null, uuidv4() + ".jpg");
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === "image/png" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/jpeg"
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
 // app.use(bodyParser.urlencoded());    // This is what we used before, to get data from forms (x-www-form-urlencoded)
 app.use(bodyParser.json()); // applicatoin/json
+app.use(multer({ storage: fileStorage, fileFilter }).single("image")); // 'image' is the name of the field in our form that will carry the file
 app.use("/images", express.static(path.join(__dirname, "images"))); // This is only for serving our images to the front end
 
 app.use((req, res, next) => {
