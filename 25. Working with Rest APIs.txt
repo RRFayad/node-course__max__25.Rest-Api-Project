@@ -192,6 +192,20 @@ For this, install the uuid package by running:
 
     - We workied in the logic in the controller (no new concepts)
 
+385. Adding Pagination
+    * We want to add pagination, so we want to limit the qnuantity of posts the user can see in each page
+
+    - We set in the front end the logic for sending the page number via query parameter
+
+    - We workind in the logic for the págionation in the controller
+    Post.find()
+    .countDocuments()
+    .then((count) => {
+      totalItems = count;
+      return Post.find()
+        .skip((currentPage - 1) * perPage)
+        .limit(perPage);
+    })
 
 
 
