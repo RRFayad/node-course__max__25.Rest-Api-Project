@@ -183,7 +183,7 @@ For this, install the uuid package by running:
     * On the front end we have to adjust also
 
 
-SOME TROBLUE ON MY IMAGE UPLOAD WHEN i EDIT!
+*! Multer is sending me an URL with \ for the images, I should replace it for /
 
 
 

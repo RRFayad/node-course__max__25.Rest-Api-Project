@@ -96,10 +96,8 @@ exports.updatePost = (req, res, next) => {
   const title = req.body.title;
   const content = req.body.content;
   let imageUrl = req.body.image;
-  console.log(imageUrl, "1");
   if (req.file) {
-    imageUrl = req.file.path;
-    console.log(imageUrl, "2");
+    imageUrl = req.file.path.replace("\\", "/");
   }
   if (!imageUrl) {
     const error = new Error("No image file");
