@@ -16,7 +16,7 @@ router.post(
       .withMessage("Minimum of 5 characters on Title"),
     body("content").isLength({ min: 5 }).withMessage("Content - Min 5"),
   ],
-  feedController.postCreatePost
+  feedController.createPost
 );
 
 router.get("/post:postId", feedController.getPost);
@@ -29,5 +29,7 @@ router.put(
   ],
   feedController.updatePost
 );
+
+router.delete("/post/:postId", feedController.deletePost);
 
 module.exports = router;

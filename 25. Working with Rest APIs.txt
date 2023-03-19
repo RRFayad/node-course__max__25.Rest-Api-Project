@@ -185,6 +185,13 @@ For this, install the uuid package by running:
 
 *! Multer is sending me an URL with \ for the images, I should replace it for /
 
+384. Deleting Posts
+    * As we want to delete posts, we are going to work first in the deleting route
+
+    - remember that in the router, it's delete method;
+
+    - We workied in the logic in the controller (no new concepts)
+
 
 
 
