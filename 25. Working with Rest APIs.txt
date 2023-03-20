@@ -228,6 +228,14 @@ USER & AUTHENTICATION
 387. Adding User Signup Validation
     - Worked in the controller and routes, no new concepts
 
+388. Signing Users Up (hashing the password)
+    * npm install bcryptjs
+
+    - We set the logic for creating the new user and saving it in the DB ;
+        * Remembering to hash the password with bcryptjs
+    
+    - We also set some logc in the front end to make sure we aare passing the right data via json
+
     
 
 

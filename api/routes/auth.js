@@ -12,7 +12,7 @@ router.put(
     body("email")
       .trim()
       .isEmail()
-      .withMessage("Please enter a vlid e-mail")
+      .withMessage("Please enter a valid e-mail")
       .custom((value, { req }) => {
         return User.findOne({ email: value }).then((userDoc) => {
           if (userDoc) {
