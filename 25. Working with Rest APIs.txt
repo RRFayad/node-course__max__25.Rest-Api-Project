@@ -24,7 +24,7 @@
     - Work with JSON data instead of Views
 
 373. Planning the API
-    - Summing up,. we just had a look at the files in th ereact app that we will need to fetch some data from the API
+    - Summing up,. we just had a look at the files in the react app that we will need to fetch some data from the API
 
 374. Fetching Lists of Posts
     * We just set the URL in the frontend, and set some parameters in the backend controller
@@ -207,6 +207,8 @@ For this, install the uuid package by running:
         .limit(perPage);
     })
 
+USER & AUTHENTICATION
+
 386. Adding a User Model
     - Created the User Model Schema;
         - require mongoose
@@ -222,6 +224,9 @@ For this, install the uuid package by running:
         - IN app file
             - Require the router from the file
             - Set the routing
+
+387. Adding User Signup Validation
+    - Worked in the controller and routes, no new concepts
 
     
 
