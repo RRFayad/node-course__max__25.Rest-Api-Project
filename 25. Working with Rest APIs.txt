@@ -207,6 +207,26 @@ For this, install the uuid package by running:
         .limit(perPage);
     })
 
+386. Adding a User Model
+    - Created the User Model Schema;
+        - require mongoose
+        - create the UserSchema, setting the fields
+        - exports
+
+    - Created the auth routes
+        - In route file
+            - require express
+            - create the router
+            - create the route
+            - exports router
+        - IN app file
+            - Require the router from the file
+            - Set the routing
+
+    
+
+
+
 
 
 
