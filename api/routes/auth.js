@@ -28,6 +28,6 @@ router.put(
   authController.signup
 ); // Here we are using put, as the user is created only once, it will be created or edited
 
-router.post("login");
+router.post("/login", authController.login);
 
 module.exports = router;

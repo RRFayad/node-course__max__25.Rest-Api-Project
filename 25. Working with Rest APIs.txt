@@ -247,6 +247,11 @@ USER & AUTHENTICATION
         - Check email in the Database
         - Check Password
     3. JWT
+        - npm install jsonwebtoken
+        - Work in the controller:
+            - require it;
+            - Create a token, using the .sign();
+            - res.status(200).json({token, anyOtherDataIWannaReturn})
 
 
     
