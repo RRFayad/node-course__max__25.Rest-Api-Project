@@ -236,6 +236,19 @@ USER & AUTHENTICATION
     
     - We also set some logc in the front end to make sure we aare passing the right data via json
 
+389. How Does Authentication Work? (JWT)
+    - This is different from before, as with RestAPIs, we return a token instead of saving a session
+        - This token will be stored in the client side, and this token must me attatched in every request fdrom the client, to be validated from the server
+         -The token contains JSON data + signature, generating a JWT (JSON Web Token)
+
+390. Starting with User Login
+    1. Set A route
+    2. Check Login Data (in the controller)
+        - Check email in the Database
+        - Check Password
+    3. JWT
+
+
     
 
 

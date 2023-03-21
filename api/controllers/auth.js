@@ -38,3 +38,33 @@ exports.signup = (req, res, next) => {
       next(err);
     });
 };
+
+exports.login = (req, res, next) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  let userData;
+
+  User.findOne({ email }).then((user) => {
+    if (!user) {
+      const error = new Error("E-mail not found");
+      error.statusCode = 401;
+      throw error;
+    }
+    userData = user;
+  });
+  bcrypt
+    .compare(password, userData.password)
+    .then((passwordDoesMatch) => {
+      if (!passwordDoesMatch) {
+        const error = new Error("Password does not match!");
+        error.statusCode = 401;
+        throw error;
+      }
+    })
+    .catch((err) => {
+      if (!err.statusCode) {
+        err.statusCode = 500;
+      }
+      next(err);
+    });
+};
