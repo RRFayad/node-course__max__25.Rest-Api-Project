@@ -241,7 +241,7 @@ USER & AUTHENTICATION
         - This token will be stored in the client side, and this token must me attatched in every request fdrom the client, to be validated from the server
          -The token contains JSON data + signature, generating a JWT (JSON Web Token)
 
-390. Starting with User Login
+390. Starting with User Login & 391. Creating the JWTs
     1. Set A route
     2. Check Login Data (in the controller)
         - Check email in the Database
@@ -253,7 +253,25 @@ USER & AUTHENTICATION
             - Create a token, using the .sign();
             - res.status(200).json({token, anyOtherDataIWannaReturn})
 
+392. Using and Valdiating the Token
+    * We need to make sure the client pass back the token for the RestAPI to validate the post methods
 
+    * https://jwt.io/ to understand and test the token verification
+
+    - We want to pass the token from the frontend to the server, so there are some options:
+        - via URL - it's just ugly and feels messy;
+        - via Body - get request have no body;
+        - via headers - Most elegant way and it makes sense for meta information as the token
+    
+    1. In the frontend:
+            fetch(`http://localhost:8080/feed/posts?page=${page}`, {
+                headers: { Authorization: `Bearer ${this.props.token}` }, // Remember that we need this authorization header in our server for prevent CORS errors | Bearer is just a convention
+            })
+    
+    2. In the backend:
+        - We created a middleware file (in the middleware folder);
+            * Check the code snpipet
+        - Add the middleware in the routes I want (we added in the feed routes)
     
 
 

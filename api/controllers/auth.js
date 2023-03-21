@@ -66,7 +66,7 @@ exports.login = (req, res, next) => {
           email: userData.email,
           userId: userData._id.toString(),
         },
-        "secret",
+        "secret", // This is a random word I choose as the developer, to combine with the token to add more secutiry (the longer the string, more secure)
         { expiresIn: "1h" }
       );
       res.status(200).json({ token, userId: userData._id.toString() });
