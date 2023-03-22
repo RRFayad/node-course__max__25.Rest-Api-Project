@@ -281,6 +281,24 @@ USER & AUTHENTICATION
         - We added the headers in each request
             Authorization: `Bearer ${this.props.token}`
 
+394. Connecting Posts & Users
+    
+    * We want to make every post connected to a User, in order to make that user delete only the posts he created
+    
+    1. Adjust the Model (no new concept, just a review)
+        -   creator: {
+                type: Schema.Types.ObjectId,
+                ref: "User",
+                required: true,
+            },
+        * In the User model, we have a Posts array value, to store the posts of each user
+    
+    2. We worked in the feed controller of creating a new post, to make sure that:
+        - We link an user to each post;
+        - We add the new post to the user.posts array
+
+
+
 
 
 

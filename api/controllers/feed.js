@@ -4,6 +4,7 @@ const path = require("path");
 const { validationResult } = require("express-validator");
 
 const Post = require("../models/post");
+const User = require("../models/user");
 
 exports.getPosts = (req, res, next) => {
   const currentPage = req.query.page || 1;
@@ -46,23 +47,34 @@ exports.createPost = (req, res, next) => {
     throw error;
   }
 
+  const userId = req.userId;
   const imageUrl = req.file.path.replace("\\", "/"); // Multer generates the path (as it was stored in the server - from my destination field when setting multer fileStorage)
   const title = req.body.title;
   const content = req.body.content;
+  let creator;
   const post = new Post({
     title,
     content,
     imageUrl,
-    creator: { name: "Renan" },
+    creator: userId,
   });
   post
     .save()
     .then((result) => {
       // Just to remember, the mongoose promise (cursor actually) returns the saved object
+      return User.findById(userId);
+    })
+    .then((user) => {
+      creator = user;
+      user.posts.push(post);
+      user.save();
+    })
+    .then((result) => {
       res.status(201).json({
         // 201 means success a resource was created (a bit more specific than just 200)
         message: "Post created successfully!",
-        post: result,
+        post: post,
+        creator: { _id: creator._id, name: creator.name },
       });
     })
     .catch((err) => {
