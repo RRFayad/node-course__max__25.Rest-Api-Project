@@ -272,8 +272,14 @@ USER & AUTHENTICATION
         - We created a middleware file (in the middleware folder);
             * Check the code snpipet
         - Add the middleware in the routes I want (we added in the feed routes)
-    
 
+393. Adding Auth Middleware to All Routes
+    
+    - We added the middleware in all routes
+
+    - Now we have to make sure we pass the token in the frontend for each API request
+        - We added the headers in each request
+            Authorization: `Bearer ${this.props.token}`
 
 
 
