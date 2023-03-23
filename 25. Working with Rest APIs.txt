@@ -316,6 +316,44 @@ USER & AUTHENTICATION
     * We just added logic to delete reference, the post from the posts array, which is in the user doc
         * we used Array.pull(ObjectId), which will delete an Item from an array
 
+Assignment - The basics of creating an api feature:
+
+    - We worked in the user status feature;
+        
+        - We added the routes, for get stauts and patch status;
+        
+        - We created the controllers
+            - They need some information form the req.body;
+            - We then created our logic, with no new concepts;
+            - Always responding a JSON object;
+        
+        - We worked in the req from the front end:
+            - set the URL;
+            - Req object:
+                fetch(`http://localhost:8080/auth/status`, {
+                    method: "PATCH",
+                    headers: {
+                        Authorization: `Bearer ${this.props.token}`,
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        status: this.state.status,
+                }),
+
+397. Wrap Up
+
+    - From a "classic" application to a Rest API
+                - NODE + Express App Setup      |       No Changes
+                - Routing / Endpoints           |       Just more http methods
+                - Handling Req & Res            |       Parse + Send JSON files (instead of views)
+                - Request Validation            |       No Changes
+                - DataBase Communication        |       No Changes
+                - Files Uploads & Downloads     |       No real changes (Only in the client side)
+                - Sessions & Cookies            |       There is no more
+                - Authentication                |       A Different Authentication Approach
+
+    - Authenticatoin:
+        -  Each req has the token (JWT method);
 
 
 
