@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const { validationResult } = require("express-validator");
+const { validationResult, Result } = require("express-validator");
 
 const Post = require("../models/post");
 const User = require("../models/user");
@@ -162,6 +162,7 @@ exports.updatePost = (req, res, next) => {
 
 exports.deletePost = (req, res, next) => {
   const postId = req.params.postId;
+
   Post.findById(postId)
     .then((post) => {
       if (!post) {
@@ -178,7 +179,13 @@ exports.deletePost = (req, res, next) => {
       return Post.findByIdAndRemove(postId); // We could just use this, but we will add later an user authentication, then we will need the whole logic
     })
     .then((result) => {
-      console.log(result);
+      return User.findById(req.userId);
+    })
+    .then((user) => {
+      user.posts.pull(postId); // pull is a mongoose method to delete from an array a document with the ObjectId arg
+      return user.save();
+    })
+    .then((result) => {
       res.status(200).json({ message: "Deleted post" });
     })
     .catch((err) => {

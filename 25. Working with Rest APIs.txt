@@ -311,6 +311,11 @@ USER & AUTHENTICATION
     
     * The best pratice would be to prevent the attempt in the front-end
 
+396. Clearing Post-User Relations
+    
+    * We just added logic to delete reference, the post from the posts array, which is in the user doc
+        * we used Array.pull(ObjectId), which will delete an Item from an array
+
 
 
 
